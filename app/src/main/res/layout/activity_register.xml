@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginActivity">
+    tools:context=".register.RegisterActivity">
 
     <!-- le second layout assure que le contenu est bien centré -->
     <android.support.constraint.ConstraintLayout
@@ -20,55 +20,48 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/loginField"
+            android:id="@+id/registerLoginField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10sp"
             android:ems="10"
+            android:layout_margin="10sp"
             android:hint="@string/loginLabel"
             android:inputType="textPersonName"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintRight_toRightOf="parent" />
 
         <EditText
-            android:id="@+id/pswdField"
+            android:id="@+id/registerPswdField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10sp"
             android:ems="10"
+            android:layout_margin="10sp"
             android:hint="@string/passwordHint"
             android:inputType="textPassword"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/loginField" />
+            app:layout_constraintTop_toBottomOf="@id/registerLoginField" />
 
-        <Button
-            android:id="@+id/loginButton"
+        <EditText
+            android:id="@+id/registerPswdRepeatField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ems="10"
             android:layout_margin="10sp"
-            android:text="@string/connectButton"
+            android:inputType="textPassword"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pswdField" />
+            app:layout_constraintTop_toBottomOf="@id/registerPswdField"
+            android:hint="@string/repeat_pswd"/>
 
         <Button
-            android:id="@+id/buttonToRegister"
+            android:id="@+id/registerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/join_us"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/loginButton"/>
-
-        <TextView
-            android:id="@+id/errorMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/buttonToRegister" />
+            app:layout_constraintTop_toBottomOf="@id/registerPswdRepeatField" />
 
     </android.support.constraint.ConstraintLayout>
 

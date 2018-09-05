@@ -3,4 +3,6 @@
     <string name="loginLabel">login</string>
     <string name="passwordHint">mot de passe</string>
     <string name="connectButton">connect</string>
+    <string name="join_us">rejoignez-nous</string>
+    <string name="repeat_pswd">vérification mot de passe</string>
 </resources>

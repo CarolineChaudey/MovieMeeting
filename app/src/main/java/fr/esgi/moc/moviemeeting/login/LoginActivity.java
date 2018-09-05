@@ -1,5 +1,6 @@
 package fr.esgi.moc.moviemeeting.login;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fr.esgi.moc.moviemeeting.R;
+import fr.esgi.moc.moviemeeting.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -29,20 +31,31 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.loginButton)
-    public void onLoginButtonCliked() {
+    public void onLoginButtonClicked() {
         String login = loginField.getText().toString();
         String pswd = pswdField.getText().toString();
-        String msg = presenter.userVerification(login, pswd);
-        if (msg.equals("OK")) {
-            goToApp();
-        } else {
-            Log.i(TAG, msg);
-            errorMessage.setText(msg);
-        }
+        presenter.userVerification(login, pswd);
+    }
+
+    @OnClick(R.id.buttonToRegister)
+    public void onRegisterClick() {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
+    // appelé par le presenter après connexion à l'api
+    public void onLoginSuccess() {
+        goToApp();
+    }
+
+    // appelé par le presenter après connexion à l'api
+    public void onLoginFail(String msg) {
+        Log.i(TAG, msg);
+        errorMessage.setText(msg);
     }
 
     private void goToApp() {
-        Log.d(TAG, "Entering th app.");
+        Log.d(TAG, "Entering the app.");
         // TODO acces a l'application
     }
 }
