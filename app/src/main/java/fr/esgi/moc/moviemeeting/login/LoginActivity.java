@@ -10,7 +10,10 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 import fr.esgi.moc.moviemeeting.R;
+import fr.esgi.moc.moviemeeting.movies.MoviesListActivity;
+import fr.esgi.moc.moviemeeting.navigation.NavigationActivity;
 import fr.esgi.moc.moviemeeting.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -57,5 +60,8 @@ public class LoginActivity extends AppCompatActivity {
     private void goToApp() {
         Log.d(TAG, "Entering the app.");
         // TODO acces a l'application
+        Intent myIntent = new Intent(this, MoviesListActivity.class);
+
+        this.startActivity(myIntent);
     }
 }
