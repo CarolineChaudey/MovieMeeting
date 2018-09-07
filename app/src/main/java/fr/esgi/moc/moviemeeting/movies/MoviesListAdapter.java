@@ -2,11 +2,14 @@ package fr.esgi.moc.moviemeeting.movies;
 
 import android.content.Context;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -15,14 +18,14 @@ import fr.esgi.moc.moviemeeting.data.dtos.Movie;
 
 public class MoviesListAdapter extends BaseAdapter {
     private Context context;
-    private final int[] mThumbIds;
     private List<Movie> movies;
+    private final String BASEIMG_URL = "http://image.tmdb.org/t/p/w185/";
 
 
 
-    public MoviesListAdapter(Context context, int[] mThumbIds) {
+    public MoviesListAdapter(Context context, List<Movie> movies) {
         this.context = context;
-        this.mThumbIds = mThumbIds;
+        this.movies = movies;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -43,8 +46,14 @@ public class MoviesListAdapter extends BaseAdapter {
             ImageView imageView = (ImageView) gridView
                     .findViewById(R.id.movie_poster);
 
+            Log.d("HELLO", "OUI");
+            if(movies.get(position) != null){
+                //imageView.setImageResource(mThumbIds[position]);
+                //Log.i("image url : ", BASEIMG_URL + movies.get(position).getPoster_path());
+                String imgUrl = BASEIMG_URL + movies.get(position).getPoster_path();
+                Picasso.get().load(imgUrl).into(imageView);
 
-            imageView.setImageResource(mThumbIds[position]);
+            }
 
 
         } else {
@@ -54,13 +63,14 @@ public class MoviesListAdapter extends BaseAdapter {
         return gridView;
     }
 
-    public void updateData(List<Movie> movies) {
-        this.movies = movies;
+    public void updateData(Movie movie) {
+
+        this.movies.add(movie);
     }
 
     @Override
     public int getCount() {
-        return mThumbIds.length;
+        return movies.size();
     }
 
     @Override

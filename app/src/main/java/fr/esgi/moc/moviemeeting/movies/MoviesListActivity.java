@@ -24,6 +24,7 @@ public class MoviesListActivity extends AppCompatActivity {
     @BindView(R.id.movies_grid)
     GridView moviesGrid;
     private MovieMeetingApiProvider provider;
+    private MoviesListAdapter adapter;
     List<Movie> movies = new ArrayList<Movie>();
 
     @Override
@@ -36,31 +37,33 @@ public class MoviesListActivity extends AppCompatActivity {
         for(int i = 0; i < imgs.length; i++){
             imgs[i] = R.drawable.background_login;
         }
-        moviesGrid.setAdapter(new MoviesListAdapter(this,imgs));
 
-            Call<List<Movie>> response = provider.getMovieByID(1);
-            response.enqueue(new Callback<List<Movie>>() {
-                @Override
-                public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
+        adapter = new MoviesListAdapter(this,movies);
+        moviesGrid.setAdapter(adapter);
+        // on affiche les 10 1ers
+            for (int i = 1; i <= 10; i++) {
+                Call<List<Movie>> response = provider.getMovieByID(i);
+                response.enqueue(new Callback<List<Movie>>() {
+                    @Override
+                    public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
 
-
-                    if (response.code() == 200) {
-                        Movie movie = response.body().get(0);
-                        movies.add(movie);
-                        Log.d("GET", movie.getOriginal_title());
-                    } else {
-                        Log.e("ERRL", response.message());
+                        if (response.code() == 200) {
+                            Movie movie = response.body().get(0);
+                            movies.add(movie);
+                            adapter.updateData(movie);
+                            adapter.notifyDataSetChanged();
+                            Log.d("GET", movie.getOriginal_title());
+                        } else {
+                            Log.e("ERRL", response.message());
+                        }
                     }
-                }
 
-                @Override
-                public void onFailure(Call<List<Movie>> call, Throwable t) {
+                    @Override
+                    public void onFailure(Call<List<Movie>> call, Throwable t) {
 
-                    Log.e("ERR", t.getMessage());
-                }
-            });
-
-
-
+                        Log.e("ERR", t.getMessage());
+                    }
+                });
+            }
     }
 }

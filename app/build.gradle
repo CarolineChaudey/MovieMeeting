@@ -4,6 +4,7 @@ apply plugin: 'com.android.application'
 project.ext {
     butterKnifeVersion = "8.8.1"
     retrofit2Version = "2.3.0"
+    picassoVersion = "2.71828"
 }
 
 android {
@@ -37,8 +38,14 @@ dependencies {
 
     implementation "com.squareup.retrofit2:retrofit:$project.retrofit2Version"
     implementation "com.squareup.retrofit2:converter-gson:$project.retrofit2Version"
+    implementation "com.squareup.picasso:picasso:$project.picassoVersion"
 
     implementation('devlight.io:navigationtabbar:1.2.5') {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+    }
+    implementation('com.squareup.picasso:picasso:2.71828') {
         exclude group: 'com.android.support'
         exclude module: 'appcompat-v7'
         exclude module: 'support-v4'

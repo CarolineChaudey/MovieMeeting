@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MovieMeetingApiProvider {
 
     // change to your web service host
-    private static final String BASE_URL = "http://192.168.0.28:8000";
+    private static final String BASE_URL = "http://10.33.3.95:8000";
 
     private MovieMeetingApiService service;
 
