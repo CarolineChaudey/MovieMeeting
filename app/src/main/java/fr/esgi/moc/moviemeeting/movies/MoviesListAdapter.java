@@ -46,7 +46,7 @@ public class MoviesListAdapter extends BaseAdapter {
             ImageView imageView = (ImageView) gridView
                     .findViewById(R.id.movie_poster);
 
-            Log.d("HELLO", "OUI");
+
             if(movies.get(position) != null){
                 //imageView.setImageResource(mThumbIds[position]);
                 //Log.i("image url : ", BASEIMG_URL + movies.get(position).getPoster_path());
