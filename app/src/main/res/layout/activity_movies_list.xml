@@ -52,7 +52,7 @@
 
         <TextView
             android:id="@+id/tvw_now_playing"
-            android:text="à l'affiche "
+            android:text="À l'affiche "
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -82,7 +82,7 @@
 
         <TextView
             android:id="@+id/tvw_upcoming"
-            android:text="à  venir"
+            android:text="À  venir"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
