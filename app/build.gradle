@@ -40,6 +40,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$project.retrofit2Version"
     implementation "com.squareup.picasso:picasso:$project.picassoVersion"
 
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+
     implementation('devlight.io:navigationtabbar:1.2.5') {
         exclude group: 'com.android.support'
         exclude module: 'appcompat-v7'
