@@ -1,10 +1,15 @@
 package fr.esgi.moc.moviemeeting.movies;
 
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.GridView;
 
 import java.util.ArrayList;
@@ -19,26 +24,30 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MoviesListActivity extends AppCompatActivity {
+public class MoviesListActivity extends Fragment {
 
     @BindView(R.id.movies_grid)
     GridView moviesGrid;
+
+
     private MovieMeetingApiProvider provider;
     private MoviesListAdapter adapter;
     List<Movie> movies = new ArrayList<Movie>();
+    private Context context;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movies_list);
-        ButterKnife.bind(this);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.activity_movies_list, container, false);
+        ButterKnife.bind(this, view);
+        context = getActivity().getApplicationContext();
         provider = new MovieMeetingApiProvider();
         int[] imgs = new int[10];
         for(int i = 0; i < imgs.length; i++){
             imgs[i] = R.drawable.background_login;
         }
 
-        adapter = new MoviesListAdapter(this,movies);
+        adapter = new MoviesListAdapter(context,movies);
         moviesGrid.setAdapter(adapter);
         // on affiche les 10 1ers
             for (int i = 1; i <= 10; i++) {
@@ -65,5 +74,7 @@ public class MoviesListActivity extends AppCompatActivity {
                     }
                 });
             }
+
+            return view;
     }
 }

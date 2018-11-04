@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     private void goToApp() {
         Log.d(TAG, "Entering the app.");
         // TODO acces a l'application
-        Intent myIntent = new Intent(this, MoviesListActivity.class);
+        Intent myIntent = new Intent(this, NavigationActivity.class);
 
         this.startActivity(myIntent);
     }
