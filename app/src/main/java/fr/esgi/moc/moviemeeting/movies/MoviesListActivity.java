@@ -6,11 +6,18 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+
+import android.widget.ListView;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +33,18 @@ import retrofit2.Response;
 
 public class MoviesListActivity extends Fragment {
 
-    @BindView(R.id.movies_grid)
-    GridView moviesGrid;
+    @BindView(R.id.rvw_last_event)
+    RecyclerView rvw_last_events;
 
+    @BindView(R.id.rvw_now_playing)
+    RecyclerView rvw_now_playing;
+
+    @BindView(R.id.rvw_upcoming)
+    RecyclerView rvw_upcoming;
 
     private MovieMeetingApiProvider provider;
     private MoviesListAdapter adapter;
-    List<Movie> movies = new ArrayList<Movie>();
+    private List<Movie> movies = new ArrayList<Movie>();
     private Context context;
 
     @Override
@@ -47,8 +59,21 @@ public class MoviesListActivity extends Fragment {
             imgs[i] = R.drawable.background_login;
         }
 
+
         adapter = new MoviesListAdapter(context,movies);
-        moviesGrid.setAdapter(adapter);
+
+
+
+        rvw_last_events.setItemAnimator(new DefaultItemAnimator());
+        rvw_last_events.setAdapter(adapter);
+
+
+        rvw_now_playing.setItemAnimator(new DefaultItemAnimator());
+        rvw_now_playing.setAdapter(adapter);
+
+
+        rvw_upcoming.setItemAnimator(new DefaultItemAnimator());
+        rvw_upcoming.setAdapter(adapter);
         // on affiche les 10 1ers
             for (int i = 1; i <= 10; i++) {
                 Call<List<Movie>> response = provider.getMovieByID(i);
@@ -58,7 +83,7 @@ public class MoviesListActivity extends Fragment {
 
                         if (response.code() == 200) {
                             Movie movie = response.body().get(0);
-                            movies.add(movie);
+                           // movies.add(movie);
                             adapter.updateData(movie);
                             adapter.notifyDataSetChanged();
                             Log.d("GET", movie.getOriginal_title());
