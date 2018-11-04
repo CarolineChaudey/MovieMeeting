@@ -10,16 +10,18 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/ntb"
   />
+    
 
     <devlight.io.library.ntb.NavigationTabBar
         android:id="@+id/ntb"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:ntb_animation_duration="200"
+
 
         app:ntb_titled="true"
         app:ntb_tinted="false"
@@ -28,13 +30,10 @@
         app:ntb_bg_color="@color/colorPrimaryDark"
         app:ntb_inactive_color="#000"
 
-
-
         app:ntb_title_size="12dp"
 
-
-
         app:layout_constraintBottom_toBottomOf="parent"
+
         />
 
 </android.support.constraint.ConstraintLayout>
