@@ -26,7 +26,7 @@ public class LoginPresenter {
     public void userVerification(String login, String pswd) {
         // TODO verifier champs (champs vides)
         // TODO envoyer à l'api
-        //loginView.showProgress();
+        loginActivity.showProgress();
 
         Credentials credentials = new Credentials(login, pswd);
         Call<User> call = provider.connect(credentials);
@@ -35,8 +35,10 @@ public class LoginPresenter {
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.code() >= 500) {
                     //onServerError("Server error.");
+                    loginActivity.hideProgress();
                 } else if (response.code() >= 400) {
                    //onUsernameError("Wrong credentials.");
+                    loginActivity.hideProgress();
                 } else {
                     User user = response.body();
 
@@ -47,13 +49,15 @@ public class LoginPresenter {
                         onSuccess();
                     } else {
                      //   onServerError("Couldn't join server.");
+                        loginActivity.hideProgress();
                     }
                 }
-            }
 
+            }
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Log.e(TAG, t.getMessage());
+                loginActivity.hideProgress();
                // onServerError("Unknown error.");
             }
         });
