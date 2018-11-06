@@ -35,10 +35,10 @@ public class LoginPresenter {
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.code() >= 500) {
                     //onServerError("Server error.");
-                    loginActivity.hideProgress();
+
                 } else if (response.code() >= 400) {
                    //onUsernameError("Wrong credentials.");
-                    loginActivity.hideProgress();
+
                 } else {
                     User user = response.body();
 
@@ -49,9 +49,10 @@ public class LoginPresenter {
                         onSuccess();
                     } else {
                      //   onServerError("Couldn't join server.");
-                        loginActivity.hideProgress();
+
                     }
                 }
+                loginActivity.hideProgress();
 
             }
             @Override
