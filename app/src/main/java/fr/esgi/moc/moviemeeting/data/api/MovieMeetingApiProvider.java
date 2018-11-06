@@ -1,9 +1,11 @@
 package fr.esgi.moc.moviemeeting.data.api;
 
+import fr.esgi.moc.moviemeeting.data.dtos.Credentials;
 import fr.esgi.moc.moviemeeting.data.dtos.Movie;
 
 import java.util.List;
 
+import fr.esgi.moc.moviemeeting.data.dtos.User;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -30,11 +32,11 @@ public class MovieMeetingApiProvider {
         return okBuilder.build();
     }
 
-    /*public Call<User> connect(Credentials credentials) {
-        return pmnService.getToken(credentials);
+    public Call<User> connect(Credentials credentials) {
+        return service.getToken(credentials);
     }
 
-    public Call<User> register(CandidateUser candidate) {
+   /* public Call<User> register(CandidateUser candidate) {
         return pmnService.register(candidate);
     }
 

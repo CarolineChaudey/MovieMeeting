@@ -22,6 +22,8 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.pswdField)    EditText pswdField;
     @BindView(R.id.errorMessage) TextView errorMessage;
 
+
+
     private final String TAG = this.getClass().getName();
     private LoginPresenter presenter;
 
@@ -57,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         errorMessage.setText(msg);
     }
 
-    private void goToApp() {
+    public void goToApp() {
         Log.d(TAG, "Entering the app.");
         // TODO acces a l'application
         Intent myIntent = new Intent(this, NavigationActivity.class);
