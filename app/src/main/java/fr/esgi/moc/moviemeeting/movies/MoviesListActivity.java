@@ -25,8 +25,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import fr.esgi.moc.moviemeeting.R;
+import fr.esgi.moc.moviemeeting.data.SharedPreferencesManager;
 import fr.esgi.moc.moviemeeting.data.api.MovieMeetingApiProvider;
 import fr.esgi.moc.moviemeeting.data.dtos.Movie;
+import fr.esgi.moc.moviemeeting.data.dtos.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -74,9 +76,12 @@ public class MoviesListActivity extends Fragment {
 
         rvw_upcoming.setItemAnimator(new DefaultItemAnimator());
         rvw_upcoming.setAdapter(adapter);
+
+        User user = SharedPreferencesManager.getUser(getActivity());
+
         // on affiche les 10 1ers
             for (int i = 1; i <= 10; i++) {
-                Call<List<Movie>> response = provider.getMovieByID(i);
+                Call<List<Movie>> response = provider.getMovieByID(i, user);
                 response.enqueue(new Callback<List<Movie>>() {
                     @Override
                     public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {

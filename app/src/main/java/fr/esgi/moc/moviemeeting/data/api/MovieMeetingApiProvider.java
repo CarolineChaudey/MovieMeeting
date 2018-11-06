@@ -48,8 +48,8 @@ public class MovieMeetingApiProvider {
         return pmnService.checkToken(token);
     }
 */
-    public Call<List<Movie>> getMovieByID(int id) {
-        return service.getMovieByID(id);
+    public Call<List<Movie>> getMovieByID(int id, User user) {
+        return service.getMovieByID(id, user.getToken());
     }
 
 
