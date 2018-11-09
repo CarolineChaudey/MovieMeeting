@@ -45,9 +45,13 @@ public class MoviesListActivity extends Fragment {
     RecyclerView rvw_upcoming;
 
     private MovieMeetingApiProvider provider;
-    private MoviesListAdapter adapter;
-    private List<Movie> movies = new ArrayList<Movie>();
+    private MoviesListAdapter adapter_last_events, adapter_now_playing, adapter_upcoming;
+    private List<Movie> movies_last_events = new ArrayList<Movie>();
+    private List<Movie> movies_now_playing = new ArrayList<Movie>();
+    private List<Movie> movies_upcoming = new ArrayList<Movie>();
     private Context context;
+
+    private User user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,49 +66,107 @@ public class MoviesListActivity extends Fragment {
         }
 
 
-        adapter = new MoviesListAdapter(context,movies);
+        adapter_last_events = new MoviesListAdapter(context,movies_last_events);
+        adapter_now_playing = new MoviesListAdapter(context,movies_now_playing);
+        adapter_upcoming = new MoviesListAdapter(context, movies_upcoming);
 
 
 
         rvw_last_events.setItemAnimator(new DefaultItemAnimator());
-        rvw_last_events.setAdapter(adapter);
+        rvw_last_events.setAdapter(adapter_last_events);
 
 
         rvw_now_playing.setItemAnimator(new DefaultItemAnimator());
-        rvw_now_playing.setAdapter(adapter);
+        rvw_now_playing.setAdapter(adapter_now_playing);
 
 
         rvw_upcoming.setItemAnimator(new DefaultItemAnimator());
-        rvw_upcoming.setAdapter(adapter);
+        rvw_upcoming.setAdapter(adapter_upcoming);
 
-        User user = SharedPreferencesManager.getUser(getActivity());
+        user = SharedPreferencesManager.getUser(getActivity());
 
-        // on affiche les 10 1ers
-            for (int i = 1; i <= 10; i++) {
-                Call<List<Movie>> response = provider.getMovieByID(i, user);
-                response.enqueue(new Callback<List<Movie>>() {
-                    @Override
-                    public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
+        loadLastEventMovies();
+        loadNowPlayingMovies();
+        loadUpcomingMovies();
 
-                        if (response.code() == 200) {
-                            Movie movie = response.body().get(0);
-                           // movies.add(movie);
-                            adapter.updateData(movie);
-                            adapter.notifyDataSetChanged();
-                            Log.d("GET", movie.getOriginal_title());
-                        } else {
-                            Log.e("ERRL", response.message());
-                        }
-                    }
+        return view;
+    }
 
-                    @Override
-                    public void onFailure(Call<List<Movie>> call, Throwable t) {
 
-                        Log.e("ERR", t.getMessage());
-                    }
-                });
+    public void loadLastEventMovies(){
+
+        Call<List<Movie>> response = provider.getAllRecentMeetingMovies(user);
+        response.enqueue(new Callback<List<Movie>>() {
+            @Override
+            public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
+
+                if (response.code() == 200) {
+                    Movie movie = response.body().get(0);
+                    // movies.add(movie);
+                    adapter_last_events.updateData(movie);
+                    adapter_last_events.notifyDataSetChanged();
+                    Log.d("GET", movie.getOriginal_title());
+                } else {
+                    Log.e("ERRL", response.message());
+                }
             }
 
-            return view;
+            @Override
+            public void onFailure(Call<List<Movie>> call, Throwable t) {
+
+                Log.e("ERR", t.getMessage());
+            }
+        });
+
+    }
+
+    public void loadNowPlayingMovies(){
+        Call<List<Movie>> response = provider.getAllPlayingMovies(user);
+        response.enqueue(new Callback<List<Movie>>() {
+            @Override
+            public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
+
+                if (response.code() == 200) {
+                    Movie movie = response.body().get(0);
+                    // movies.add(movie);
+                    adapter_now_playing.updateData(movie);
+                    adapter_now_playing.notifyDataSetChanged();
+                    Log.d("GET", movie.getOriginal_title());
+                } else {
+                    Log.e("ERRL", response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Movie>> call, Throwable t) {
+
+                Log.e("ERR", t.getMessage());
+            }
+        });
+    }
+
+    public void loadUpcomingMovies(){
+        Call<List<Movie>> response = provider.getAllUpcomingMovies(user);
+        response.enqueue(new Callback<List<Movie>>() {
+            @Override
+            public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
+
+                if (response.code() == 200) {
+                    Movie movie = response.body().get(0);
+                    // movies.add(movie);
+                    adapter_upcoming.updateData(movie);
+                    adapter_upcoming.notifyDataSetChanged();
+                    Log.d("GET", movie.getOriginal_title());
+                } else {
+                    Log.e("ERRL", response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Movie>> call, Throwable t) {
+
+                Log.e("ERR", t.getMessage());
+            }
+        });
     }
 }

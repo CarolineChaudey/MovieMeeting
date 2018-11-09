@@ -52,6 +52,20 @@ public class MovieMeetingApiProvider {
         return service.getMovieByID(id, user.getToken());
     }
 
+    public Call<List<Movie>> getAllRecentMeetingMovies(User user){
+        return service.getAllRecentMeetingMovies(user.getToken());
+    }
+
+    public Call<List<Movie>> getAllPlayingMovies(User user){
+        return service.getAllPlayingMovies(user.getToken());
+    }
+
+    public Call<List<Movie>> getAllUpcomingMovies(User user){
+        return service.getAllUpcomingMovies(user.getToken());
+    }
+
+
+
 
 
 }

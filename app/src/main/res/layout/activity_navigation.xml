@@ -27,7 +27,7 @@
         app:ntb_tinted="false"
         app:ntb_scaled="false"
 
-        app:ntb_bg_color="@color/colorPrimaryDark"
+        app:ntb_bg_color="@color/colorPrimary"
         app:ntb_inactive_color="#000"
 
         app:ntb_title_size="12dp"

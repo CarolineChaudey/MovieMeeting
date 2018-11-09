@@ -23,4 +23,14 @@ public interface MovieMeetingApiService {
     @GET("./movies/{id}")
     Call<List<Movie>> getMovieByID(@Path("id") int movieId, @Header("x-api-key") String token);
 
+    @GET("./movies/with-latest-meetings/")
+    Call<List<Movie>> getAllRecentMeetingMovies(@Header("x-api-key") String token);
+
+    @GET("./movies/playing/")
+    Call<List<Movie>> getAllPlayingMovies(@Header("x-api-key") String token);
+
+    @GET("./movies/upcoming/")
+    Call<List<Movie>> getAllUpcomingMovies(@Header("x-api-key") String token);
+
+
 }
