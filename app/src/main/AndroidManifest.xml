@@ -25,8 +25,9 @@
         <activity android:name=".movies.MoviesListFragment" />
         <activity
             android:name=".meetings.MeetingsListActivity"
-            android:label="@string/title_activity_meetings_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="Evenements"
+            android:parentActivityName=".navigation.NavigationActivity"
+            />
     </application>
 
 </manifest>
