@@ -22,7 +22,11 @@
             android:name=".register.RegisterActivity"
             android:parentActivityName=".login.LoginActivity" />
         <activity android:name=".navigation.NavigationActivity" />
-        <activity android:name=".movies.MoviesListActivity"></activity>
+        <activity android:name=".movies.MoviesListFragment" />
+        <activity
+            android:name=".meetings.MeetingsListActivity"
+            android:label="@string/title_activity_meetings_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

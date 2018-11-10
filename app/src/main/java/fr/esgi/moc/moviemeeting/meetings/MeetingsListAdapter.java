@@ -1,4 +1,4 @@
-package fr.esgi.moc.moviemeeting.movies;
+package fr.esgi.moc.moviemeeting.meetings;
 
 import android.content.Context;
 
@@ -18,25 +18,27 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import fr.esgi.moc.moviemeeting.R;
-import fr.esgi.moc.moviemeeting.data.api.MovieMeetingApiProvider;
+import fr.esgi.moc.moviemeeting.data.dtos.Meeting;
 import fr.esgi.moc.moviemeeting.data.dtos.Movie;
 
-public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.MyViewHolder> {
+public class MeetingsListAdapter extends RecyclerView.Adapter<MeetingsListAdapter.MyViewHolder> {
     private Context context;
-    private List<Movie> movies;
-    private static final String TAG = "MoviesListAdapter";
+    private List<Meeting> meetings;
+    private static final String TAG = "MeetingsListAdapter";
 
 
     private Listener listener;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.movie_poster)
-        ImageView moviePoster;
-        @BindView(R.id.movie_title)
-        TextView movieTitle;
-        @BindView(R.id.movie_author)
-        TextView movieAuthor;
+        @BindView(R.id.meeting_title)
+        TextView meetingTitle;
+        @BindView(R.id.meeting_date)
+        TextView meetingDate;
+        @BindView(R.id.meeting_desc)
+        TextView meetingDesc;
+        @BindView(R.id.meeting_nb_person)
+        TextView meetingNbPerson;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -49,15 +51,15 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.My
         this.listener = listener;
     }
 
-    public MoviesListAdapter(Context context, List<Movie> movies) {
+    public MeetingsListAdapter(Context context, List<Meeting> meetings) {
         this.context = context;
-        this.movies = movies;
+        this.meetings = meetings;
     }
 
 
-    public void updateData(Movie movie) {
+    public void updateData(Meeting meeting) {
 
-        this.movies.add(movie);
+        this.meetings.add(meeting);
     }
 
 
@@ -68,24 +70,25 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.My
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.cell_movies, parent, false);
+                .inflate(R.layout.cell_meetings, parent, false);
         return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        final Movie movie = movies.get(position);
+        final Meeting meeting = meetings.get(position);
 
 
-        String imgUrl = MovieMeetingApiProvider.BASEIMG_URL + movie.getPoster_path();
-        Picasso.get().load(imgUrl).into(holder.moviePoster);
-        holder.movieTitle.setText(movie.getTitle());
+       // holder.meetingTitle.setText(meeting.getTitle());
+        //holder.meetingDate.setText(meeting.getMeetingDate());
+        holder.meetingDesc.setText(meeting.getDescription());
+        //holder.meetingNbPerson.setText();
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(listener != null) listener.onMovieClick(movie);
+                if(listener != null) listener.onMeetingClick(meeting);
             }
         });
 
@@ -98,11 +101,11 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.My
 
     @Override
     public int getItemCount() {
-        return movies.size();
+        return meetings.size();
     }
 
 
     public interface Listener {
-        void onMovieClick(Movie movie);
+        void onMeetingClick(Meeting meeting);
     }
 }

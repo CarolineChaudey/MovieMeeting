@@ -6,4 +6,8 @@
     <string name="join_us">rejoignez-nous</string>
     <string name="repeat_pswd">vérification mot de passe</string>
     <string name="moviemeeting">MovieMeeting</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_meetings_list">MeetingsListActivity</string>
 </resources>

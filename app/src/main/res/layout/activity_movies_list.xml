@@ -13,7 +13,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp"
-    tools:context=".movies.MoviesListActivity">
+    tools:context=".movies.MoviesListFragment">
 
     <LinearLayout
         android:id="@+id/linlay_last_event"
