@@ -2,9 +2,8 @@ package fr.esgi.moc.moviemeeting.movies;
 
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.support.v7.widget.DefaultItemAnimator;
@@ -14,9 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
-
-import android.widget.ListView;
 
 
 import java.util.ArrayList;
@@ -29,11 +25,12 @@ import fr.esgi.moc.moviemeeting.data.SharedPreferencesManager;
 import fr.esgi.moc.moviemeeting.data.api.MovieMeetingApiProvider;
 import fr.esgi.moc.moviemeeting.data.dtos.Movie;
 import fr.esgi.moc.moviemeeting.data.dtos.User;
+import fr.esgi.moc.moviemeeting.meetings.MeetingsListActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MoviesListActivity extends Fragment {
+public class MoviesListFragment extends Fragment implements MoviesListAdapter.Listener {
 
     @BindView(R.id.rvw_last_event)
     RecyclerView rvw_last_events;
@@ -49,6 +46,8 @@ public class MoviesListActivity extends Fragment {
     private List<Movie> movies = new ArrayList<Movie>();
     private Context context;
 
+    public static final String MOVIE_KEY = "movieSelect";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
@@ -56,15 +55,10 @@ public class MoviesListActivity extends Fragment {
         ButterKnife.bind(this, view);
         context = getActivity().getApplicationContext();
         provider = new MovieMeetingApiProvider();
-        int[] imgs = new int[10];
-        for(int i = 0; i < imgs.length; i++){
-            imgs[i] = R.drawable.background_login;
-        }
-
 
         adapter = new MoviesListAdapter(context,movies);
 
-
+        this.adapter.setListener(this);
 
         rvw_last_events.setItemAnimator(new DefaultItemAnimator());
         rvw_last_events.setAdapter(adapter);
@@ -106,5 +100,12 @@ public class MoviesListActivity extends Fragment {
             }
 
             return view;
+    }
+
+    @Override
+    public void onMovieClick(Movie movie) {
+        Intent intent = new Intent(this.getActivity(), MeetingsListActivity.class);
+        intent.putExtra(MOVIE_KEY, movie);
+        startActivity(intent);
     }
 }

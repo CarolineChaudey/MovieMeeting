@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".meetings.MeetingsListActivity">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/expsn_movie"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <com.github.florent37.expansionpanel.ExpansionHeader
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:expansion_headerIndicator="@id/headerIndicator"
+            app:expansion_layout="@id/expansionLayout"
+            app:expansion_toggleOnClick="true"
+            android:padding="5dp"
+            >
+
+            <!-- HEADER -->
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/movie_poster_meetings"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@mipmap/ic_movies_list"/>
+
+                <TextView
+                    android:id="@+id/movie_title_meetings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Titre de mon film"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    app:layout_constraintLeft_toRightOf="@id/movie_poster_meetings"
+                    app:layout_constraintTop_toTopOf="@id/movie_poster_meetings" />
+
+                <RatingBar
+                    android:id="@+id/rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:numStars="5"
+                    android:rating="3"
+                    android:theme="@style/RatingBar"
+                    android:stepSize="0.1"
+                    android:isIndicator="true"
+                    app:layout_constraintLeft_toRightOf="@id/movie_poster_meetings"
+                    app:layout_constraintTop_toBottomOf="@id/movie_title_meetings"/>
+                <TextView
+                    android:id="@+id/rating_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3252 votes"
+                    app:layout_constraintLeft_toRightOf="@id/rating"
+                    app:layout_constraintTop_toBottomOf="@id/movie_title_meetings"/>
+
+                <TextView
+                    android:id="@+id/movie_releaseDate_meetings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date de sortie : XX/XX/XXXX"
+                    app:layout_constraintTop_toBottomOf="@id/rating"
+                    app:layout_constraintLeft_toRightOf="@id/movie_poster_meetings"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Voir le synopsys"
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toLeftOf="@id/headerIndicator"
+
+                        />
+
+                    <!-- HEADER INDICATOR -->
+                    <ImageView
+                        android:adjustViewBounds="true"
+                        android:id="@+id/headerIndicator"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_width="wrap_content"
+                        app:srcCompat="@drawable/ic_expansion_header_indicator_grey_24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"/>
+
+
+            </android.support.constraint.ConstraintLayout>
+
+
+        </com.github.florent37.expansionpanel.ExpansionHeader>
+
+        <com.github.florent37.expansionpanel.ExpansionLayout
+            android:id="@+id/expansionLayout"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <!-- CONTENT -->
+
+            <TextView
+                android:id="@+id/movie_synopsys_meetings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="SaluutSaluutSaluutSaluutSaluutSaluutSaluutSaluutSaluutSaluutSaluutSaluutSaluutSaluutSaluutSaluutSaluutSaluutSaluutSaluutSaluutSaluutSaluut"/>
+
+        </com.github.florent37.expansionpanel.ExpansionLayout>
+    </LinearLayout>
+
+
+
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvw_meetings"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        tools:itemCount="4"
+        tools:listitem="@layout/cell_meetings"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/expsn_movie"
+       />
+
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,6 +1,5 @@
 package fr.esgi.moc.moviemeeting.navigation;
 
-import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import devlight.io.library.ntb.NavigationTabBar;
 import fr.esgi.moc.moviemeeting.R;
-import fr.esgi.moc.moviemeeting.movies.MoviesListActivity;
+import fr.esgi.moc.moviemeeting.movies.MoviesListFragment;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -32,9 +31,9 @@ public class NavigationActivity extends AppCompatActivity {
 
         List<Fragment> fragments = new Vector<>();
 
-        fragments.add(Fragment.instantiate(this, MoviesListActivity.class.getName()));
-        fragments.add(Fragment.instantiate(this, MoviesListActivity.class.getName()));
-        fragments.add(Fragment.instantiate(this, MoviesListActivity.class.getName()));
+        fragments.add(Fragment.instantiate(this, MoviesListFragment.class.getName()));
+        fragments.add(Fragment.instantiate(this, MoviesListFragment.class.getName()));
+        fragments.add(Fragment.instantiate(this, MoviesListFragment.class.getName()));
         navPageAdapter = new NavPageAdapter(super.getSupportFragmentManager(), fragments);
 
 

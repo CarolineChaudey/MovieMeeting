@@ -15,7 +15,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import fr.esgi.moc.moviemeeting.R;
-import fr.esgi.moc.moviemeeting.movies.MoviesListActivity;
 import fr.esgi.moc.moviemeeting.navigation.NavigationActivity;
 import fr.esgi.moc.moviemeeting.register.RegisterActivity;
 
