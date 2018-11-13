@@ -39,4 +39,7 @@ public interface MovieMeetingApiService {
     @GET("./meetings/for/{filmId}")
     Call<List<Meeting>> getMeetingByMovieID(@Path("filmId") int movieId, @Header("x-api-key") String token);
 
+    @POST("./meetings/for/{filmId}")
+    Call<Void> addMeeting(@Path("filmId") int movieId, @Body Meeting meeting, @Header("x-api-key") String token);
+
 }

@@ -97,11 +97,12 @@ public class MoviesListFragment extends Fragment implements MoviesListAdapter.Li
             public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
 
                 if (response.code() == 200) {
-                    Movie movie = response.body().get(0);
+                    //Movie movie = response.body();
+                    List<Movie> movies = response.body();
                     // movies.add(movie);
-                    adapter_last_events.updateData(movie);
+                    adapter_last_events.updateData(movies);
                     adapter_last_events.notifyDataSetChanged();
-                    Log.d("GET", movie.getOriginal_title());
+                  //  Log.d("GET", movie.getOriginal_title());
                 } else {
                     Log.e("ERRL", response.message());
                 }
@@ -123,11 +124,11 @@ public class MoviesListFragment extends Fragment implements MoviesListAdapter.Li
             public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
 
                 if (response.code() == 200) {
-                    Movie movie = response.body().get(0);
+                    //Movie movie = response.body();
+                    List<Movie> movies = response.body();
                     // movies.add(movie);
-                    adapter_now_playing.updateData(movie);
+                    adapter_now_playing.updateData(movies);
                     adapter_now_playing.notifyDataSetChanged();
-                    Log.d("GET", movie.getOriginal_title());
                 } else {
                     Log.e("ERRL", response.message());
                 }
@@ -148,11 +149,11 @@ public class MoviesListFragment extends Fragment implements MoviesListAdapter.Li
             public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
 
                 if (response.code() == 200) {
-                    Movie movie = response.body().get(0);
+                    //Movie movie = response.body();
+                    List<Movie> movies = response.body();
                     // movies.add(movie);
-                    adapter_upcoming.updateData(movie);
+                    adapter_upcoming.updateData(movies);
                     adapter_upcoming.notifyDataSetChanged();
-                    Log.d("GET", movie.getOriginal_title());
                 } else {
                     Log.e("ERRL", response.message());
                 }

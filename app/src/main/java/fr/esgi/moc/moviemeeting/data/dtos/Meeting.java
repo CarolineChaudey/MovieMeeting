@@ -7,13 +7,29 @@ public class Meeting {
     private int idMeeting;
     private String title;
     private String description;
-    private Date meetingDate;
+    private String meetingDate;
+    private String creationDate;
     private int idMovie;
-    private Date creationDate;
 
 
     public Meeting(){
 
+    }
+
+    public String getMeetingDate() {
+        return meetingDate;
+    }
+
+    public void setMeetingDate(String meetingDate) {
+        this.meetingDate = meetingDate;
+    }
+
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
     }
 
     public int getIdMeeting() {
@@ -40,13 +56,6 @@ public class Meeting {
         this.description = description;
     }
 
-    public Date getMeetingDate() {
-        return meetingDate;
-    }
-
-    public void setMeetingDate(Date meetingDate) {
-        this.meetingDate = meetingDate;
-    }
 
     public int getIdMovie() {
         return idMovie;
@@ -56,11 +65,5 @@ public class Meeting {
         this.idMovie = idMovie;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
 }

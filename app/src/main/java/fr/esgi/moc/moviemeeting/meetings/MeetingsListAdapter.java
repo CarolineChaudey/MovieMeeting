@@ -57,9 +57,9 @@ public class MeetingsListAdapter extends RecyclerView.Adapter<MeetingsListAdapte
     }
 
 
-    public void updateData(Meeting meeting) {
+    public void updateData(List<Meeting> meetings) {
 
-        this.meetings.add(meeting);
+        this.meetings = meetings;
     }
 
 
@@ -82,6 +82,7 @@ public class MeetingsListAdapter extends RecyclerView.Adapter<MeetingsListAdapte
        // holder.meetingTitle.setText(meeting.getTitle());
         //holder.meetingDate.setText(meeting.getMeetingDate());
         holder.meetingDesc.setText(meeting.getDescription());
+        holder.meetingDate.setText(meeting.getMeetingDate());
         //holder.meetingNbPerson.setText();
 
 

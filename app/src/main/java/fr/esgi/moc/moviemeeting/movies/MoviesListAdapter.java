@@ -55,9 +55,9 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.My
     }
 
 
-    public void updateData(Movie movie) {
+    public void updateData(List<Movie> movies) {
 
-        this.movies.add(movie);
+        this.movies = movies;
     }
 
 
