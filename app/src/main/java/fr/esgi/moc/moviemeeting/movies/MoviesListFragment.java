@@ -50,7 +50,15 @@ public class MoviesListFragment extends Fragment implements MoviesListAdapter.Li
 
     private User user;
 
+    private int page_recent_meetings = 1;
+    private int page_now_playing = 1;
+    private int page_upcoming = 1;
+
     public static final String MOVIE_KEY = "movieSelect";
+
+    public static final String RECENT_MEETINGS = "RECENT_MEETINGS";
+    public static final String NOW_PLAYING = "NOW_PLAYING";
+    public static final String UPCOMING = "UPCOMING";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,9 +68,9 @@ public class MoviesListFragment extends Fragment implements MoviesListAdapter.Li
         context = getActivity().getApplicationContext();
         provider = new MovieMeetingApiProvider();
 
-        adapter_last_events = new MoviesListAdapter(context,movies_last_events);
-        adapter_now_playing = new MoviesListAdapter(context,movies_now_playing);
-        adapter_upcoming = new MoviesListAdapter(context, movies_upcoming);
+        adapter_last_events = new MoviesListAdapter(context,movies_last_events, RECENT_MEETINGS);
+        adapter_now_playing = new MoviesListAdapter(context,movies_now_playing, NOW_PLAYING);
+        adapter_upcoming = new MoviesListAdapter(context, movies_upcoming, UPCOMING);
 
         this.adapter_last_events.setListener(this);
         this.adapter_now_playing.setListener(this);
@@ -85,23 +93,26 @@ public class MoviesListFragment extends Fragment implements MoviesListAdapter.Li
         loadNowPlayingMovies();
         loadUpcomingMovies();
 
+
+
         return view;
     }
 
 
     public void loadLastEventMovies(){
 
-        Call<List<Movie>> response = provider.getAllRecentMeetingMovies(user);
+        Call<List<Movie>> response = provider.getAllRecentMeetingMovies(user, page_recent_meetings);
         response.enqueue(new Callback<List<Movie>>() {
             @Override
             public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
 
                 if (response.code() == 200) {
-                    Movie movie = response.body().get(0);
+                    //Movie movie = response.body();
+                    List<Movie> movies = response.body();
                     // movies.add(movie);
-                    adapter_last_events.updateData(movie);
+                    adapter_last_events.updateData(movies);
                     adapter_last_events.notifyDataSetChanged();
-                    Log.d("GET", movie.getOriginal_title());
+                  //  Log.d("GET", movie.getOriginal_title());
                 } else {
                     Log.e("ERRL", response.message());
                 }
@@ -117,17 +128,17 @@ public class MoviesListFragment extends Fragment implements MoviesListAdapter.Li
     }
 
     public void loadNowPlayingMovies(){
-        Call<List<Movie>> response = provider.getAllPlayingMovies(user);
+        Call<List<Movie>> response = provider.getAllPlayingMovies(user, page_now_playing);
         response.enqueue(new Callback<List<Movie>>() {
             @Override
             public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
 
                 if (response.code() == 200) {
-                    Movie movie = response.body().get(0);
+                    //Movie movie = response.body();
+                    List<Movie> movies = response.body();
                     // movies.add(movie);
-                    adapter_now_playing.updateData(movie);
+                    adapter_now_playing.updateData(movies);
                     adapter_now_playing.notifyDataSetChanged();
-                    Log.d("GET", movie.getOriginal_title());
                 } else {
                     Log.e("ERRL", response.message());
                 }
@@ -142,17 +153,17 @@ public class MoviesListFragment extends Fragment implements MoviesListAdapter.Li
     }
 
     public void loadUpcomingMovies(){
-        Call<List<Movie>> response = provider.getAllUpcomingMovies(user);
+        Call<List<Movie>> response = provider.getAllUpcomingMovies(user, page_upcoming);
         response.enqueue(new Callback<List<Movie>>() {
             @Override
             public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
 
                 if (response.code() == 200) {
-                    Movie movie = response.body().get(0);
+                    //Movie movie = response.body();
+                    List<Movie> movies = response.body();
                     // movies.add(movie);
-                    adapter_upcoming.updateData(movie);
+                    adapter_upcoming.updateData(movies);
                     adapter_upcoming.notifyDataSetChanged();
-                    Log.d("GET", movie.getOriginal_title());
                 } else {
                     Log.e("ERRL", response.message());
                 }
@@ -171,5 +182,34 @@ public class MoviesListFragment extends Fragment implements MoviesListAdapter.Li
         Intent intent = new Intent(this.getActivity(), MeetingsListActivity.class);
         intent.putExtra(MOVIE_KEY, movie);
         startActivity(intent);
+    }
+
+    @Override
+    public void onPosition(String rv_type, int position) {
+
+            switch(rv_type){
+                case "RECENT_MEETINGS":
+                    if(position == 8*page_recent_meetings) {
+                        loadLastEventMovies();
+                        page_recent_meetings++;
+                    }
+                    break;
+                case "NOW_PLAYING":
+
+                    if(position == 8*page_now_playing) {
+                        loadNowPlayingMovies();
+                        page_now_playing++;
+                    }
+                    break;
+                case "UPCOMING":
+                    if(position == 8*page_upcoming) {
+                        loadUpcomingMovies();
+                        page_upcoming++;
+                    }
+                    break;
+                default:
+                    break;
+            }
+
     }
 }

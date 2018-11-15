@@ -3,11 +3,10 @@ package fr.esgi.moc.moviemeeting.data.dtos;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
-public class Meeting implements Serializable {
-    
+public class MeetingFromApi implements Serializable {
+
     private int idMeeting;
     private String title;
     private String description;
@@ -16,24 +15,16 @@ public class Meeting implements Serializable {
     private int idMovie;
 
 
+    @SerializedName("Users")
+    private List<User> users;
 
-    private transient List<User> participants;
 
 
-    public Meeting(){
+    public MeetingFromApi(){
 
     }
 
-    public Meeting(MeetingFromApi meeting){
-        this.idMeeting = meeting.getIdMeeting();
-        this.title = meeting.getTitle();
-        this.description = meeting.getDescription();
-        this.meetingDate = meeting.getMeetingDate();
-        this.creationDate = meeting.getCreationDate();
-        this.idMovie = meeting.getIdMovie();
 
-        this.participants = meeting.getUsers();
-    }
 
     public String getMeetingDate() {
         return meetingDate;
@@ -84,13 +75,14 @@ public class Meeting implements Serializable {
         this.idMovie = idMovie;
     }
 
-
-    public List<User> getParticipants() {
-        return participants;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setParticipants(List<User> participants) {
-        this.participants = participants;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
+
 
 }
+

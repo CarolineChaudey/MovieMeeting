@@ -5,6 +5,7 @@
     <color name="colorPrimaryWhiter">#e5d579</color>
     <color name="colorAccent">#FF4081</color>
     <color name="textTheme">#202020</color>
+    <color name="textThemeWhiter">#3a3939</color>
     <color name ="colorWhiter">#c8d6e5</color>
 
 </resources>

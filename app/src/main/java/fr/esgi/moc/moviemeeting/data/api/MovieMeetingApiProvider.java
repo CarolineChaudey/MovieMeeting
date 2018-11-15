@@ -2,6 +2,7 @@ package fr.esgi.moc.moviemeeting.data.api;
 
 import fr.esgi.moc.moviemeeting.data.dtos.Credentials;
 import fr.esgi.moc.moviemeeting.data.dtos.Meeting;
+import fr.esgi.moc.moviemeeting.data.dtos.MeetingFromApi;
 import fr.esgi.moc.moviemeeting.data.dtos.Movie;
 
 import java.util.List;
@@ -54,26 +55,39 @@ public class MovieMeetingApiProvider {
         return service.getMovieByID(id, user.getToken());
     }
 
-    public Call<List<Movie>> getAllRecentMeetingMovies(User user){
-        return service.getAllRecentMeetingMovies(user.getToken());
+    public Call<List<Movie>> getMovieContainName(String name, User user){
+        return service.getMovieContainName(name, user.getToken());
     }
 
-    public Call<List<Movie>> getAllPlayingMovies(User user){
-        return service.getAllPlayingMovies(user.getToken());
+    public Call<List<Movie>> getAllRecentMeetingMovies(User user, int page){
+        return service.getAllRecentMeetingMovies(user.getToken(), page);
     }
 
-    public Call<List<Movie>> getAllUpcomingMovies(User user){
-        return service.getAllUpcomingMovies(user.getToken());
+    public Call<List<Movie>> getAllPlayingMovies(User user, int page){
+        return service.getAllPlayingMovies(user.getToken(), page);
+    }
+
+    public Call<List<Movie>> getAllUpcomingMovies(User user, int page){
+        return service.getAllUpcomingMovies(user.getToken(), page);
     }
 
 
-    public Call<Meeting> getMeetingByID(int id, User user){
+    public Call<MeetingFromApi> getMeetingByID(int id, User user){
         return service.getMeetingByID(id, user.getToken());
     }
 
-    public Call<List<Meeting>> getMeetingByMovieID(int movieId, User user){
+    public Call<List<MeetingFromApi>> getMeetingByMovieID(int movieId, User user){
         return service.getMeetingByMovieID(movieId, user.getToken());
     }
+
+    public Call<Void> addMeeting(int movieId, Meeting meeting, User user){
+        return service.addMeeting(movieId, meeting, user.getToken());
+    }
+
+    public Call<Void> joinMeeting(int meetingId, User user){
+        return  service.joinMeeting(meetingId, user.getId(), user.getToken());
+    }
+
 
 
 }

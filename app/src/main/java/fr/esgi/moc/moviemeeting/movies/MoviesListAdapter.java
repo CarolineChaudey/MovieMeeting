@@ -26,6 +26,8 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.My
     private List<Movie> movies;
     private static final String TAG = "MoviesListAdapter";
 
+    private String rv_type;
+
 
     private Listener listener;
 
@@ -38,6 +40,7 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.My
         @BindView(R.id.movie_author)
         TextView movieAuthor;
 
+
         public MyViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -49,21 +52,27 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.My
         this.listener = listener;
     }
 
-    public MoviesListAdapter(Context context, List<Movie> movies) {
+    public MoviesListAdapter(Context context, List<Movie> movies, String rv_type) {
         this.context = context;
         this.movies = movies;
+        this.rv_type = rv_type;
     }
 
 
-    public void updateData(Movie movie) {
+    public void updateData(List<Movie> movies) {
 
-        this.movies.add(movie);
+        this.movies.addAll(movies);
+    }
+
+    public void eraseData(List<Movie> movies){
+        this.movies = movies;
     }
 
 
     public Object getItem(int position) {
         return null;
     }
+
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -82,12 +91,19 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.My
         holder.movieTitle.setText(movie.getTitle());
 
 
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(listener != null) listener.onMovieClick(movie);
             }
         });
+
+        listener.onPosition(rv_type, holder.getAdapterPosition());
+
+
+
+
 
     }
 
@@ -101,8 +117,8 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.My
         return movies.size();
     }
 
-
     public interface Listener {
         void onMovieClick(Movie movie);
+        void onPosition(String rv_type, int position);
     }
 }
