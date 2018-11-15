@@ -25,6 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import devlight.io.library.ntb.NavigationTabBar;
 import fr.esgi.moc.moviemeeting.R;
+import fr.esgi.moc.moviemeeting.buddys.BuddysListFragment;
 import fr.esgi.moc.moviemeeting.meetings.MeetingsListActivity;
 import fr.esgi.moc.moviemeeting.movies.MoviesListFragment;
 import fr.esgi.moc.moviemeeting.movies.MoviesSearchActivity;
@@ -56,7 +57,7 @@ public class NavigationActivity extends AppCompatActivity {
         List<Fragment> fragments = new Vector<>();
 
         fragments.add(Fragment.instantiate(this, MoviesListFragment.class.getName()));
-        fragments.add(Fragment.instantiate(this, MoviesListFragment.class.getName()));
+        fragments.add(Fragment.instantiate(this, BuddysListFragment.class.getName()));
         fragments.add(Fragment.instantiate(this, MoviesListFragment.class.getName()));
         navPageAdapter = new NavPageAdapter(super.getSupportFragmentManager(), fragments);
 

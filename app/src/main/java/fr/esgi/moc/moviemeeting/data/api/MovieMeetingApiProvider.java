@@ -39,6 +39,11 @@ public class MovieMeetingApiProvider {
         return service.getToken(credentials);
     }
 
+
+    public Call<List<User>> getBuddys(User user){
+        return service.getBuddys(user.getToken());
+    }
+
    /* public Call<User> register(CandidateUser candidate) {
         return pmnService.register(candidate);
     }

@@ -26,6 +26,9 @@ public interface MovieMeetingApiService {
     @POST("./auth/")
     Call<User> getToken(@Body Credentials credentials);
 
+    @GET("./users/buddys/")
+    Call<List<User>> getBuddys(@Header("x-api-key") String token);
+
     @GET("./movies/{id}")
     Call<List<Movie>> getMovieByID(@Path("id") int movieId, @Header("x-api-key") String token);
 
