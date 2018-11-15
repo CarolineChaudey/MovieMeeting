@@ -29,6 +29,7 @@ import fr.esgi.moc.moviemeeting.R;
 import fr.esgi.moc.moviemeeting.data.SharedPreferencesManager;
 import fr.esgi.moc.moviemeeting.data.api.MovieMeetingApiProvider;
 import fr.esgi.moc.moviemeeting.data.dtos.Meeting;
+import fr.esgi.moc.moviemeeting.data.dtos.MeetingFromApi;
 import fr.esgi.moc.moviemeeting.data.dtos.Movie;
 import fr.esgi.moc.moviemeeting.data.dtos.User;
 import fr.esgi.moc.moviemeeting.movies.MoviesListFragment;
@@ -37,7 +38,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MeetingsListActivity extends AppCompatActivity {
+public class MeetingsListActivity extends AppCompatActivity implements MeetingsListAdapter.Listener {
 
     @BindView(R.id.expansionLayout)
     ExpansionLayout expansionLayout;
@@ -103,6 +104,7 @@ public class MeetingsListActivity extends AppCompatActivity {
 
         provider = new MovieMeetingApiProvider();
 
+
         Serializable content = getIntent().getSerializableExtra(MoviesListFragment.MOVIE_KEY);
 
         if (content != null) {
@@ -121,6 +123,8 @@ public class MeetingsListActivity extends AppCompatActivity {
             }
 
             adapter = new MeetingsListAdapter(this,meetings);
+
+            this.adapter.setListener(this);
 
             rvw_meetings.setItemAnimator(new DefaultItemAnimator());
             rvw_meetings.setAdapter(adapter);
@@ -163,17 +167,23 @@ public class MeetingsListActivity extends AppCompatActivity {
     }
 
     public void reloadData(){
-        Call<List<Meeting>> response = provider.getMeetingByMovieID(movie.getIdMovie(), user);
-        response.enqueue(new Callback<List<Meeting>>() {
+        Call<List<MeetingFromApi>> response = provider.getMeetingByMovieID(movie.getIdMovie(), user);
+        response.enqueue(new Callback<List<MeetingFromApi>>() {
             @Override
-            public void onResponse(Call<List<Meeting>> call, Response<List<Meeting>> response) {
+            public void onResponse(Call<List<MeetingFromApi>> call, Response<List<MeetingFromApi>> response) {
 
                 meetingsProgressBar.setVisibility(View.GONE);
                 if (response.code() == 200) {
-                    List<Meeting> lmeetings = response.body();
+                    List<MeetingFromApi> lmeetings = response.body();
 
-                    meetings = lmeetings;
-                    Log.d("SIZE", String.valueOf(meetings.size()));
+                    meetings.clear();
+
+                    for(int i = 0; i < lmeetings.size(); i++){
+                        meetings.add(new Meeting(lmeetings.get(0)));
+                    }
+
+
+
                     if(meetings.size() == 0){
                         no_meetings.setVisibility(View.VISIBLE);
                         rvw_meetings.setVisibility(View.GONE);
@@ -190,7 +200,7 @@ public class MeetingsListActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Meeting>> call, Throwable t) {
+            public void onFailure(Call<List<MeetingFromApi>> call, Throwable t) {
 
                 Log.e("ERR", t.getMessage());
             }
@@ -198,5 +208,10 @@ public class MeetingsListActivity extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void onMeetingClick(Meeting meeting) {
+        Intent intent = new Intent(context, MeetingDetailsActivity.class);
+        intent.putExtra(MEETING_KEY, meeting);
+        startActivity(intent);
+    }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import fr.esgi.moc.moviemeeting.data.dtos.Credentials;
 import fr.esgi.moc.moviemeeting.data.dtos.Meeting;
+import fr.esgi.moc.moviemeeting.data.dtos.MeetingFromApi;
 import fr.esgi.moc.moviemeeting.data.dtos.Movie;
 import fr.esgi.moc.moviemeeting.data.dtos.User;
 import retrofit2.Call;
@@ -13,6 +14,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 
@@ -34,12 +36,15 @@ public interface MovieMeetingApiService {
     Call<List<Movie>> getAllUpcomingMovies(@Header("x-api-key") String token);
 
     @GET("./meetings/{id}")
-    Call<Meeting> getMeetingByID(@Path("id") int meetingId, @Header("x-api-key") String token);
+    Call<MeetingFromApi> getMeetingByID(@Path("id") int meetingId, @Header("x-api-key") String token);
 
     @GET("./meetings/for/{filmId}")
-    Call<List<Meeting>> getMeetingByMovieID(@Path("filmId") int movieId, @Header("x-api-key") String token);
+    Call<List<MeetingFromApi>> getMeetingByMovieID(@Path("filmId") int movieId, @Header("x-api-key") String token);
 
     @POST("./meetings/for/{filmId}")
     Call<Void> addMeeting(@Path("filmId") int movieId, @Body Meeting meeting, @Header("x-api-key") String token);
+
+    @PUT("./meetings/join/{meetingId}")
+    Call<Void> joinMeeting(@Path("meetingId") int meetingId, @Body int idUser, @Header("x-api-key") String token);
 
 }

@@ -14,4 +14,7 @@
     <string name="title_of_meeting">Titre de l\'évènement</string>
     <string name="my_event_title">Titre de mon évènement</string>
     <string name="str_no_meetings">Il n\'y a aucun évènement pour ce film</string>
+    <string name="str_already_on_meeting">Vous êtes déja sur cet évènement !</string>
+    <string name="str_join_meeting">Rejoindre l\'évènement</string>
+    <string name="str_quit_meeting">Quitter l\'évènement</string>
 </resources>

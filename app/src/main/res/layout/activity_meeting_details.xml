@@ -6,29 +6,90 @@
     android:layout_height="match_parent"
     tools:context=".meetings.MeetingDetailsActivity">
 
-    <View
 
+    <LinearLayout
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:id="@+id/expsn_meeting"
+        android:background="@color/colorPrimary"
         app:layout_constraintTop_toTopOf="parent"
-        android:elevation="4dp"
-        android:background="@color/colorPrimaryDark"/>
-    
+        >
+        <com.github.florent37.expansionpanel.ExpansionHeader
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:expansion_headerIndicator="@id/headerIndicator"
+            app:expansion_layout="@id/expansionLayout"
+            app:expansion_toggleOnClick="true"
+            android:padding="5dp"
+            >
+
+            <!-- HEADER -->
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvw_meeting_desc_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ma super desc"
+                    android:textSize="17sp"
+                    android:gravity="center"
+                    />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+
+        </com.github.florent37.expansionpanel.ExpansionHeader>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvw_participants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Participants :"
+        android:padding="5dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/expsn_meeting"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvw_members"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-
-        app:layout_constraintBottom_toTopOf="@id/btn_join_meeting">
+        tools:itemCount="5"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        tools:listitem="@layout/cell_users"
+        app:layout_constraintTop_toBottomOf="@id/tvw_participants"
+        app:layout_constraintBottom_toTopOf="@id/btn_join_meeting"
+        >
 
     </android.support.v7.widget.RecyclerView>
+
+    <ProgressBar
+        android:id="@+id/usersProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="100sp"
+
+        app:layout_constraintTop_toBottomOf="@id/tvw_participants"
+        app:layout_constraintBottom_toTopOf="@id/btn_join_meeting"
+        />
     
     
     <Button
         android:id="@+id/btn_join_meeting"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Rejoindre l'évènement"
+        android:layout_height="80dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="@string/str_join_meeting"
         android:background="@color/colorPrimaryWhiter"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
