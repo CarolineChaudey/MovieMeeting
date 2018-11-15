@@ -179,9 +179,8 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingsL
                     meetings.clear();
 
                     for(int i = 0; i < lmeetings.size(); i++){
-                        meetings.add(new Meeting(lmeetings.get(0)));
+                        meetings.add(new Meeting(lmeetings.get(i)));
                     }
-
 
 
                     if(meetings.size() == 0){

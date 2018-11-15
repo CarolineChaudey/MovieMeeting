@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".login.LoginActivity"
     android:background="@drawable/yellow_gradient"
+    android:padding="5dp"
     >
 
     <ImageView
@@ -28,27 +29,15 @@
         android:text="@string/moviemeeting"
         android:textSize="30sp"
 
-        android:textColor="@color/colorWhiter"
+        android:textColor="@color/textThemeWhiter"
         android:textStyle="bold"
         android:textAlignment="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/cstrlyt_login" />
+        app:layout_constraintTop_toBottomOf="@id/loginIcon" />
 
 
-    <!-- le second layout assure que le contenu est bien centré -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/cstrlyt_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+
 
         <EditText
             android:id="@+id/loginField"
@@ -62,7 +51,7 @@
             android:inputType="textPersonName"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toTopOf="@id/pswdField" />
 
         <EditText
             android:id="@+id/pswdField"
@@ -76,26 +65,35 @@
             android:inputType="textPassword"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/loginField" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <Button
             android:id="@+id/loginButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10sp"
+            android:ems="10"
             android:text="@string/connectButton"
+            android:background="@color/textTheme"
+            android:textColor="@color/colorWhiter"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pswdField" />
+            app:layout_constraintTop_toBottomOf="@id/pswdField"
+            android:layout_marginTop="10dp"/>
 
         <Button
             android:id="@+id/buttonToRegister"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/join_us"
+            android:ems="10"
+            android:background="@color/textTheme"
+            android:textColor="@color/colorWhiter"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/loginButton"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
 
         <TextView
             android:id="@+id/errorMessage"
@@ -110,13 +108,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
-
-            app:layout_constraintTop_toBottomOf="@+id/pswdField"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             />
 
-    </android.support.constraint.ConstraintLayout>
 
 
 
