@@ -64,6 +64,10 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.My
         this.movies.addAll(movies);
     }
 
+    public void eraseData(List<Movie> movies){
+        this.movies = movies;
+    }
+
 
     public Object getItem(int position) {
         return null;
@@ -85,6 +89,7 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.My
         String imgUrl = MovieMeetingApiProvider.BASEIMG_URL + movie.getPoster_path();
         Picasso.get().load(imgUrl).into(holder.moviePoster);
         holder.movieTitle.setText(movie.getTitle());
+
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

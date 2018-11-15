@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MovieMeetingApiProvider {
 
     // change to your web service host
-    private static final String BASE_URL = "http://192.168.43.202:8000";
+    private static final String BASE_URL = "http://192.168.0.24:8000";
     public static final String BASEIMG_URL = "http://image.tmdb.org/t/p/w185/";
 
     private MovieMeetingApiService service;
@@ -53,6 +53,10 @@ public class MovieMeetingApiProvider {
 */
     public Call<List<Movie>> getMovieByID(int id, User user) {
         return service.getMovieByID(id, user.getToken());
+    }
+
+    public Call<List<Movie>> getMovieContainName(String name, User user){
+        return service.getMovieContainName(name, user.getToken());
     }
 
     public Call<List<Movie>> getAllRecentMeetingMovies(User user, int page){

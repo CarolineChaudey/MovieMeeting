@@ -29,7 +29,6 @@
         android:gravity="center_vertical"
         android:drawableTint="@color/colorAccent"
         android:drawableRight="@mipmap/ic_right_arrow"
-        android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:textSize="20dp"/>
 

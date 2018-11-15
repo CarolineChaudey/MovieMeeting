@@ -11,25 +11,28 @@
         android:roundIcon="@mipmap/ic_popcorn_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login.LoginActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".login.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".register.RegisterActivity" />
+        <activity android:name=".register.RegisterActivity" />
         <activity android:name=".navigation.NavigationActivity" />
         <activity android:name=".movies.MoviesListFragment" />
         <activity
             android:name=".meetings.MeetingsListActivity"
             android:label="Evenements"
             android:parentActivityName=".navigation.NavigationActivity" />
-        <activity android:name=".newMeeting.NewMeetingActivity"
+        <activity
+            android:name=".newMeeting.NewMeetingActivity"
             android:label="Nouvel évènement" />
-        <activity android:name=".meetings.MeetingDetailsActivity"></activity>
+        <activity android:name=".meetings.MeetingDetailsActivity" />
+        <activity android:name=".movies.MoviesSearchActivity"
+            android:label="Recherche d'un film"></activity>
     </application>
 
 </manifest>
