@@ -1,5 +1,6 @@
 package fr.esgi.moc.moviemeeting.navigation;
 
+import android.accounts.Account;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import devlight.io.library.ntb.NavigationTabBar;
 import fr.esgi.moc.moviemeeting.R;
+import fr.esgi.moc.moviemeeting.account.AcountFragment;
 import fr.esgi.moc.moviemeeting.buddys.BuddysListFragment;
 import fr.esgi.moc.moviemeeting.meetings.MeetingsListActivity;
 import fr.esgi.moc.moviemeeting.movies.MoviesListFragment;
@@ -58,7 +60,7 @@ public class NavigationActivity extends AppCompatActivity {
 
         fragments.add(Fragment.instantiate(this, MoviesListFragment.class.getName()));
         fragments.add(Fragment.instantiate(this, BuddysListFragment.class.getName()));
-        fragments.add(Fragment.instantiate(this, MoviesListFragment.class.getName()));
+        fragments.add(Fragment.instantiate(this, AcountFragment.class.getName()));
         navPageAdapter = new NavPageAdapter(super.getSupportFragmentManager(), fragments);
 
 
@@ -78,14 +80,14 @@ public class NavigationActivity extends AppCompatActivity {
                 new NavigationTabBar.Model.Builder(
                         getResources().getDrawable(R.mipmap.ic_buddys_list),
                         R.color.colorPrimary
-                ).title("Buddys")
+                ).title("Rencontres")
                         .build()
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
                         getResources().getDrawable(R.mipmap.ic_profile),
                         R.color.colorAccent
-                ).title("Profile")
+                ).title("Profil")
                         .build()
         );
 

@@ -61,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onRegisterClick() {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
+
     }
 
     // appelé par le presenter après connexion à l'api
@@ -80,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent myIntent = new Intent(this, NavigationActivity.class);
 
         this.startActivity(myIntent);
+        finish();
     }
 
     public void showProgress() {

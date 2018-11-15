@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".account.AcountFragment">
+
+
+    <TextView
+        android:id="@+id/tvw_my_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Mon profil"
+        android:textStyle="bold"
+        android:textSize="25sp"/>
+    
+    <ImageView
+        android:id="@+id/imv_my_picture"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@mipmap/ic_user"
+        app:layout_constraintTop_toBottomOf="@id/tvw_my_account"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvw_my_pseudo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jean"
+        android:gravity="center"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/imv_my_picture"/>
+    
+    <TextView
+        android:id="@+id/tvw_my_movies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mes films"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/tvw_my_pseudo"
+        android:layout_marginTop="10dp"/>
+    
+    <TextView
+        android:id="@+id/tvw_my_movies_no"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="Vous ne participer actuellement à aucun évènement"
+        app:layout_constraintBottom_toTopOf="@id/btn_quit"
+        app:layout_constraintTop_toBottomOf="@id/tvw_my_movies"/>
+
+
+    
+    <ImageButton
+        android:id="@+id/btn_quit"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@mipmap/ic_leave"
+        android:tint="@color/colorWhiter"
+        android:background="@color/textTheme"/>
+
+</android.support.constraint.ConstraintLayout>
