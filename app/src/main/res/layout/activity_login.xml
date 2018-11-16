@@ -41,7 +41,7 @@
 
         <EditText
             android:id="@+id/loginField"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
             android:textColorHint="@color/colorWhiter"
@@ -55,7 +55,7 @@
 
         <EditText
             android:id="@+id/pswdField"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
             android:textColorHint="@color/colorWhiter"

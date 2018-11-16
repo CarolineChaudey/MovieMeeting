@@ -66,10 +66,18 @@ public class BuddysListFragment extends Fragment {
 
         user = SharedPreferencesManager.getUser(getActivity());
 
-        loadBuddys();
+
 
         // Inflate the layout for this fragment
         return view;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        loadBuddys();
     }
 
     public void loadBuddys(){
