@@ -3,6 +3,7 @@ package fr.esgi.moc.moviemeeting.data.dtos;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 public class MeetingFromApi implements Serializable {
@@ -10,8 +11,10 @@ public class MeetingFromApi implements Serializable {
     private int idMeeting;
     private String title;
     private String description;
-    private String meetingDate;
-    private String creationDate;
+
+
+    private Date meetingDate;
+    private Date creationDate;
     private int idMovie;
 
 
@@ -25,22 +28,22 @@ public class MeetingFromApi implements Serializable {
     }
 
 
-
-    public String getMeetingDate() {
+    public Date getMeetingDate() {
         return meetingDate;
     }
 
-    public void setMeetingDate(String meetingDate) {
+    public void setMeetingDate(Date meetingDate) {
         this.meetingDate = meetingDate;
     }
 
-    public String getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(String creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
+
 
     public int getIdMeeting() {
         return idMeeting;

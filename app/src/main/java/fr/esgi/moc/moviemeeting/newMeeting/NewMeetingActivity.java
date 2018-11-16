@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fr.esgi.moc.moviemeeting.R;
+import fr.esgi.moc.moviemeeting.data.DateFormatter;
 import fr.esgi.moc.moviemeeting.data.SharedPreferencesManager;
 import fr.esgi.moc.moviemeeting.data.api.MovieMeetingApiProvider;
 import fr.esgi.moc.moviemeeting.data.dtos.Meeting;
@@ -43,6 +44,8 @@ public class NewMeetingActivity extends AppCompatActivity {
     Meeting meeting;
     User user;
 
+    DateFormatter df;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +53,7 @@ public class NewMeetingActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         provider = new MovieMeetingApiProvider();
         meeting = new Meeting();
-
+        df = new DateFormatter();
         user = SharedPreferencesManager.getUser(this);
 
         ActionBar actionBar = getSupportActionBar();
@@ -65,8 +68,9 @@ public class NewMeetingActivity extends AppCompatActivity {
         Log.d("BUTTON", "ez");
         Date currentTime = Calendar.getInstance().getTime();
 
-        meeting.setCreationDate(currentTime.toString());
-        meeting.setMeetingDate(currentTime.toString());
+
+        meeting.setCreationDate(currentTime);
+        meeting.setMeetingDate(currentTime);
         meeting.setDescription(edt_meeting_desc_add.getText().toString());
         meeting.setTitle(edt_meeting_title_add.getText().toString());
 
@@ -74,7 +78,7 @@ public class NewMeetingActivity extends AppCompatActivity {
 
         if (content != null) {
             movie = (Movie) content;
-            Log.d("id", String.valueOf(movie.getIdMovie()));
+            Log.d("MOVIE", String.valueOf(movie.getIdMovie()));
             retrofit2.Call<Void> apiResponse =  provider.addMeeting(movie.getIdMovie(), meeting, user);
             apiResponse.enqueue(new Callback<Void>() {
                 @Override

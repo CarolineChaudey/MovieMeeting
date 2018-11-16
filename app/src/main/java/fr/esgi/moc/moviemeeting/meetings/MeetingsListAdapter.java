@@ -18,6 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import fr.esgi.moc.moviemeeting.R;
+import fr.esgi.moc.moviemeeting.data.DateFormatter;
 import fr.esgi.moc.moviemeeting.data.dtos.Meeting;
 import fr.esgi.moc.moviemeeting.data.dtos.Movie;
 
@@ -28,6 +29,8 @@ public class MeetingsListAdapter extends RecyclerView.Adapter<MeetingsListAdapte
 
 
     private Listener listener;
+
+    DateFormatter df;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -81,8 +84,12 @@ public class MeetingsListAdapter extends RecyclerView.Adapter<MeetingsListAdapte
 
        // holder.meetingTitle.setText(meeting.getTitle());
         //holder.meetingDate.setText(meeting.getMeetingDate());
+
+        df = new DateFormatter(meeting.getMeetingDate());
+
+
         holder.meetingDesc.setText(meeting.getDescription());
-        holder.meetingDate.setText(meeting.getMeetingDate());
+        holder.meetingDate.setText(df.getFormatDate());
         //holder.meetingNbPerson.setText();
 
 

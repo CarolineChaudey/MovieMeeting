@@ -16,6 +16,7 @@ public class Movie implements Serializable{
     private String original_title;
     private boolean adult;
     private String overview;
+
     private Date release_date;
 
     public Movie(){
@@ -117,7 +118,6 @@ public class Movie implements Serializable{
     public void setRelease_date(Date release_date) {
         this.release_date = release_date;
     }
-
 
 
 

@@ -89,15 +89,21 @@ public class MoviesListFragment extends Fragment implements MoviesListAdapter.Li
 
         user = SharedPreferencesManager.getUser(getActivity());
 
-        loadLastEventMovies();
-        loadNowPlayingMovies();
-        loadUpcomingMovies();
+
 
 
 
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        loadLastEventMovies();
+        loadNowPlayingMovies();
+        loadUpcomingMovies();
+    }
 
     public void loadLastEventMovies(){
 

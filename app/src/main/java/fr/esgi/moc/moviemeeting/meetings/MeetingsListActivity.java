@@ -26,6 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import fr.esgi.moc.moviemeeting.R;
+import fr.esgi.moc.moviemeeting.data.DateFormatter;
 import fr.esgi.moc.moviemeeting.data.SharedPreferencesManager;
 import fr.esgi.moc.moviemeeting.data.api.MovieMeetingApiProvider;
 import fr.esgi.moc.moviemeeting.data.dtos.Meeting;
@@ -75,6 +76,7 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingsL
 
 
 
+    private DateFormatter df;
     private MovieMeetingApiProvider provider;
     private List<Meeting> meetings = new ArrayList<Meeting>();
     private MeetingsListAdapter adapter;
@@ -94,6 +96,8 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingsL
         ButterKnife.bind(this);
         no_meetings.setVisibility(View.GONE);
         rvw_meetings.setVisibility(View.GONE);
+
+        df = new DateFormatter();
 
 
         ActionBar actionBar = getSupportActionBar();
@@ -115,7 +119,8 @@ public class MeetingsListActivity extends AppCompatActivity implements MeetingsL
             movie_title_meetings.setText(movie.getTitle());
             rating.setRating((float)movie.getVote_average()/2);
             rating_count.setText(String.valueOf(movie.getVote_count()) + " votes");
-            movie_releaseDate_meetings.setText(movie.getRelease_date().toString());
+            df.setmDate(movie.getRelease_date());
+            movie_releaseDate_meetings.setText(df.getFormatDate());
             if(movie.getOverview().isEmpty()){
                 movie_synopsys_meetings.setText("Pas de synopsys");
             } else {
